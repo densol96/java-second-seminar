@@ -16,9 +16,6 @@ public class Professor extends Person {
     return counter;
   }
 
-  // !!!!!! TEST THIS !!!!!!!
-  // ** will inherit a static counter (but this will be an independent copy)
-
   // Unique ID setter
   private String generateId() {
     return "PROF_" + generateTimestamp();
@@ -72,5 +69,4 @@ public class Professor extends Person {
     System.out.println("DEGREE: " + getDegree());
     System.out.println("======");
   }
-
 }
