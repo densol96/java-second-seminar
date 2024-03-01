@@ -38,7 +38,56 @@ public class App {
     for (Person p : people) {
       System.out.println(p);
     }
+    System.out.println("======= TESTING CALC BY STUDENT =======");
+    System.out.println("Deniss's AVG grade ---> " + calcAvg(studOne));
+    System.out.println("Misha's AVG grade ---> " + calcAvg(studTwo));
 
+    System.out.println("======= TESTING CALC BY COURSE =======");
+    System.out.println("Deniss's AVG grade ---> " + calcAvg(courseOne));
+    System.out.println("Misha's AVG grade ---> " + calcAvg(courseTwo));
+
+    System.out.println("======= TESTING TAUGHT BY PROFESSOR =======");
+    System.out.println("Taught by profOne ---> " + taughtBy(profOne));
+  }
+
+  private static int taughtBy(Professor p) {
+    ArrayList<Course> uniqCourses = new ArrayList<>();
+    int total = 0;
+    for (Grade g : grades) {
+      if (g.getCourse().getProfessor().equals(p) && !uniqCourses.contains(g.getCourse())) {
+        total++;
+        uniqCourses.add(courseOne);
+      }
+    }
+    return total;
+  }
+
+  private static double calcAvg(Student st) {
+    double sum = 0;
+    int total = 0;
+
+    for (Grade g : grades) {
+      if (g.getStudent().equals(st)) {
+        sum += g.getValue();
+        total++;
+      }
+    }
+
+    return (total != 0) ? (sum / total) : 0;
+  }
+
+  private static double calcAvg(Course c) {
+    double sum = 0;
+    int total = 0;
+
+    for (Grade g : grades) {
+      if (g.getCourse().equals(c)) {
+        sum += g.getValue();
+        total++;
+      }
+    }
+
+    return (total != 0) ? (sum / total) : 0;
   }
 
   private static void initObjects() throws InputException {
