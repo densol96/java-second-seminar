@@ -3,7 +3,7 @@ package model;
 import helper.InputException;
 import model.base.Person;
 
-public class Student extends Person {
+public class Student extends Person implements TimestampInterface {
 
   private final String id;
 

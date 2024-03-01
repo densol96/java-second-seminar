@@ -17,5 +17,8 @@ public class App {
     prof.showFullInfo();
     System.out.println(Professor.getCounter());
 
+    Course c = new Course("Comp Sci", 4, prof);
+    System.out.println(c);
+
   }
 }

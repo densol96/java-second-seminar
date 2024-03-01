@@ -4,7 +4,7 @@ import helper.InputException;
 import model.base.Person;
 import helper.Degree;
 
-public class Professor extends Person {
+public class Professor extends Person implements TimestampInterface {
 
   private final String id;
   private Degree degree;

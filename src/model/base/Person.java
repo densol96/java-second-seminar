@@ -1,8 +1,8 @@
 package model.base;
 
 import helper.InputException;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
+// import java.time.*;
+// import java.time.format.DateTimeFormatter;
 
 public class Person {
   private String name;
@@ -39,16 +39,5 @@ public class Person {
   protected Person(String name, String surname) throws InputException {
     setName(name);
     setSurname(surname);
-  }
-
-  /*
-   * timestamp's generator method to be inherited by the child classes.
-   * For examle, for class Professor to be implemented:
-   * prof_ID = "PROF_" + **here goes thetimestamp**
-   */
-  protected String generateTimestamp() {
-    var currentTime = LocalDateTime.now();
-    var pattern = DateTimeFormatter.ofPattern("yyyyMMddHHmmssns");
-    return currentTime.format(pattern).toString();
   }
 }
