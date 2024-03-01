@@ -12,6 +12,7 @@ public class App {
   private static Professor profOne, profTwo;
   private static Course courseOne, courseTwo;
   private static Student studOne, studTwo;
+  private static ArrayList<Person> people = new ArrayList<>();
 
   public static void main(String[] argv) throws InputException {
     initObjects();
@@ -28,6 +29,15 @@ public class App {
     System.out.println("Testing the expected rejected addition of the new grade in the list..");
     Grade grFive = new Grade(3, studTwo, courseTwo);
     addGrade(grFive);
+    System.out.println("=============================================================================");
+    System.out.println("Testing the polymorphist via the array of people (students and professors): ");
+    people.add(profOne);
+    people.add(studOne);
+    people.add(profTwo);
+    people.add(studTwo);
+    for (Person p : people) {
+      System.out.println(p);
+    }
 
   }
 
