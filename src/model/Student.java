@@ -16,7 +16,7 @@ public class Student extends Person implements TimestampInterface {
 
   // Unique ID setter
   private String generateId() {
-    return "STUD_" + generateTimestamp();
+    return "STUD_" + generateTimestamp() + getCounter();
   }
 
   // CONSTRUCTOR

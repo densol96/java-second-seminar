@@ -8,11 +8,13 @@ public class Course implements TimestampInterface {
   private int creditPoints;
   private Professor professor;
 
+  private static int counter = 0;
+
   // instead of setId because final field "id" is to be explictly initialised in
   // the constructor
   // the return value of this method to be assigned to "this.id"
   private String generateId() {
-    return "COURS_" + generateTimestamp();
+    return "COURS_" + generateTimestamp() + counter;
   }
 
   // OTHER SETTERS
@@ -20,7 +22,7 @@ public class Course implements TimestampInterface {
     if (title == null) {
       throw new InputException("Course title cannot be null");
     }
-    if (!title.matches("[A-Za-z ]+([1-9]{1,2})?")) {
+    if (!title.matches("[A-Z][A-Za-z]{3,}( [A-Z][a-z]+)?( [1-9]{1})?")) {
       throw new InputException("Course title does not match the pattern --> [A-Za-z ]+([1-9]{1-2})?");
     }
     this.title = title;
@@ -46,6 +48,7 @@ public class Course implements TimestampInterface {
     setTitle(title);
     setCreditPoints(creditPoints);
     setProfessor(professor);
+    counter++;
   }
 
   // GETTERS
@@ -79,8 +82,10 @@ public class Course implements TimestampInterface {
     if (obj == null || !(obj instanceof Course)) {
       return false;
     }
-    // Could also check all 4 params, but in this case id is expected to be unique
-    // and immutable
-    return ((Course) obj).getId() == id;
+    /*
+     * To avoid bugs, for this programm, we will consider the course to be the
+     * same if the titles are the same... We want to avoid copies.
+     */
+    return ((Course) obj).getTitle() == title;
   }
 }

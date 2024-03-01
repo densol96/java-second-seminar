@@ -8,11 +8,13 @@ public class Grade implements TimestampInterface {
   private Student student;
   private Course course;
 
+  private static int counter = 0;
+
   // instead of setId because final field "id" is to be explictly initialised in
   // the constructor
   // the return value of this method to be assigned to "this.id"
   private String generateId() {
-    return "GRAD_" + generateTimestamp();
+    return "GRAD_" + generateTimestamp() + counter;
   }
 
   // SETTERS
@@ -43,6 +45,7 @@ public class Grade implements TimestampInterface {
     setValue(value);
     setStudent(student);
     setCourse(course);
+    counter++;
   }
 
   // GETTERS
@@ -76,8 +79,13 @@ public class Grade implements TimestampInterface {
     if (obj == null || !(obj instanceof Grade)) {
       return false;
     }
-    // Could also check all 4 params, but in this case id is expected to be unique
-    // and immutable
-    return ((Grade) obj).getId() == id;
+
+    /*
+     * There should be no duplicate grades object with the same fields of:
+     * STUDENT and COURSE
+     * since for course the specific student should only be graded once. If the is a
+     * need for a value to be changed, it can be done directly on the object
+     */
+    return ((Grade) obj).getStudent().equals(student) && ((Grade) obj).getCourse().equals(course);
   }
 }
