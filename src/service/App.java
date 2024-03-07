@@ -1,6 +1,8 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import helper.Degree;
 import helper.InputException;
 import model.*;
@@ -161,7 +163,7 @@ public class App {
     ArrayList<Course> uniqCourses = new ArrayList<>();
     int total = 0;
     for (Grade g : grades) {
-      if (g.getCourse().getProfessor().equals(p) && !uniqCourses.contains(g.getCourse())) {
+      if (g.getCourse().getProfessors().contains(p) && !uniqCourses.contains(g.getCourse())) {
         total++;
         uniqCourses.add(courseOne);
       }
@@ -202,8 +204,8 @@ public class App {
       profOne = new Professor("Jack", "One", Degree.POSTDOCTORAL);
       profTwo = new Professor("Peter", "Two", Degree.PROFESSIONAL);
       //
-      courseOne = new Course("JAVA", 4, profOne);
-      courseTwo = new Course("Math Analysis 2", 2, profTwo);
+      courseOne = new Course("JAVA", 4, new ArrayList<Professor>(Arrays.asList(profOne)));
+      courseTwo = new Course("Math Analysis 2", 2, new ArrayList<Professor>(Arrays.asList(profTwo)));
       //
       studOne = new Student("Deniss", "Solovjovs");
       studTwo = new Student("Mihails", "Kostjuks");
