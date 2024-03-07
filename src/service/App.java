@@ -77,6 +77,7 @@ public class App {
     
     System.out.println("After sorting: ");
     sortArray();
+    
     for(Student s: sortedStudents) {
     	System.out.print(s);
     	System.out.println(" ----> " + calcAvg(s));
