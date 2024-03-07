@@ -1,7 +1,6 @@
 package service;
 
 import java.util.ArrayList;
-
 import helper.Degree;
 import helper.InputException;
 import model.*;
@@ -84,7 +83,67 @@ public class App {
     }
   }
   
+  // CRUD
+
+  // create
+  public static void createStudent(String name, String surname) throws Exception {
+    if (name == null || surname == null) {
+      throw new Exception("Empty parameters");
+    }
+    for (Student student: students) {
+      if (student.getName().equals(name) && student.getSurname().equals(surname)) {
+        throw new Exception("Student already exists");
+
+      }
+    }
+    Student student = new Student(name, surname);
+    students.add(student);
+  }
+
+  public static Student retrieveStudentBySurname(String surname) throws Exception {
+    if (surname == null) throw new Exception("Empty surname");
+
+    for(Student student: students) {
+      if (student.getSurname().equals(surname)) {
+        return student;
+      }
+    }
+    throw new Exception("Student not found");
+  }
+
+  public static void updateStudentSurname(String name, String surname, String newSurname) throws Exception {
+    if (name == null || surname == null) {
+      throw new Exception("Empty parameters");
+    }
+
+    for(Student student: students) {
+      if (student.getName().equals(name) && student.getSurname().equals(surname)) {
+        student.setSurname(newSurname);
+        return;
+      }
+    }
+
+    throw new Exception("Student not found");
+  }
+
+  public static void deleteStudent(String name, String surname) throws Exception {
+    if (name == null || surname == null) {
+      throw new Exception("Empty parameters");
+    }
+
+    for(Student student: students) {
+      if (student.getName().equals(name) && student.getSurname().equals(surname)) {
+        students.remove(student);
+        return;
+      }
+    }
+
+    throw new Exception("Student not found");
+  }
+
+  // can add asc/desc at home
   private static void sortArray() {
+	  // edit to check if these students have grades
 	  sortedStudents = (ArrayList)students.clone();
 	  for(int i = 0; i < sortedStudents.size() - 1; i++) {
 		  for(int j = i+ 1; j < sortedStudents.size(); j++) {
